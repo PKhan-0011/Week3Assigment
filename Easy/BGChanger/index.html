@@ -1,0 +1,79 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BackGround Changer!</title>
+</head>
+<style>
+  #div1{
+    display: flex;
+    justify-content: center;
+    padding-top: 15em;
+  }
+  
+  #input1, #input2, #input3, #input4{
+    width: 4em;
+  }
+
+  #div2{
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    justify-content: center;
+    padding-top: 1em;
+  }
+
+  button{
+     height: 1.5em;
+  }
+
+</style>
+
+<body>
+  <div id="div1">
+    <h1>BackGround Changer</h1>
+ </div>
+
+ <div id="div2">
+  
+    <button style="background-color: crimson; border-radius: 2em; border: white;" id="input1"></button>
+    <button style="background-color: blue ; border-radius: 2em; border: white;" id="input2"></button>
+    <button style="background-color:  orange; border-radius: 2em; border: white;" id="input3"></button>
+    <button style="background-color:  greenyellow; border-radius: 2em; border: white;" id="input4"></button>
+
+ </div>
+
+ <script>
+     
+     const buttons = document.querySelectorAll('button');
+
+     const body = document.querySelector('body');
+
+     for(let i = 0; i<buttons.length; i++){
+        buttons[i].addEventListener('click', function(e){
+
+           if(e.target.id === 'input1'){
+              body.style.backgroundColor = 'red';
+           }
+
+          else if(e.target.id === 'input2'){
+            body.style.backgroundColor = 'blue';
+           }
+
+           else if(e.target.id === 'input3'){
+            body.style.backgroundColor = 'orange';
+           }
+
+           else if(e.target.id === 'input4'){
+            body.style.backgroundColor = 'pink';
+           }
+        });
+     }
+
+ </script>
+
+</body>
+</html>

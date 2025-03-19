@@ -1,0 +1,424 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foam Builder!</title>
+
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        body{
+            height: 100vh;
+            width: 100vw;
+            background-color: rgb(228, 232, 236);
+        }
+
+        #div1{
+            height: 45vh;
+            width: 45vw;
+            background-color: rgb(255, 255, 255);
+            margin: auto;
+            margin-top: 2em;
+            border-radius: 0.6em;
+        }
+
+        #div2{
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+            padding-top: 1.5em;
+            padding-left: 1em;
+        }
+        #head1{
+             font-size: large;
+             font-family: sans-serif;
+             font-weight: 5000;
+        }
+        #div3{
+            display: flex;
+            gap: 0.7em;
+        }
+
+        #button1{
+            background-color: rgb(69, 118, 224);
+            width: 9em;
+            font-size: small;
+            border-radius: 5px;
+            color: white;
+            border: 2px solid white;
+            height: 2.5em;
+        }
+
+        #div4{
+            height: 2.4em;
+            width: 95%;
+            background-color: rgb(200, 203, 203);
+            border-radius: 2px;
+            margin: auto;
+        }
+
+        #para1{
+            margin-left: 1em;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+   <div id="div1">
+        
+     <div id="div2">
+
+        <h1 id="head1">Dynamic Form Builder</h1>
+
+        <div id="div3">
+          <button id="button1" onclick="AddTextField()">Add Text Field</button>
+          <button id="button1" onclick="AddCheckBox()">Add Checkbox</button>
+          <button id="button1" onclick="AddRadioButton()">Add Radio Button</button>
+        </div>
+           
+        <div id="div4">
+            <p id="para1">No field added yet</p>
+        </div>
+         
+     </div>
+
+   </div>
+
+
+   <script>
+     function removePlaceHolder(){
+        const placeholder = document.getElementById('para1');
+         if(placeholder){
+            placeholder.remove();
+         }
+     }
+
+     // yha sara code aa jayega tera js ka;
+      function AddTextField(){
+        removePlaceHolder();
+        const name = document.getElementById("div4");
+        // const para1 = document.getElementById('para1');
+        // para1.parentNode.removeChild(para1);
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.placeholder = 'writeSomething';
+        name.appendChild(input);   
+      }
+
+      function AddCheckBox(){
+        removePlaceHolder();
+         const name2 = document.getElementById('div4');
+        //  const para2 = document.getElementById('para1');
+        //  para2.parentNode.removeChild(para2);
+         const newCheckBox = document.createElement('input');
+         newCheckBox.type = 'checkbox';
+         name2.appendChild(newCheckBox);
+      }
+
+      function AddRadioButton(){
+         removePlaceHolder(); // isse hoga ye ki hame jo pehle se text pda hua hai isko remoev kar denga!;
+         const name3 = document.getElementById('div4');
+         const input = document.createElement('input');
+         input.type = 'radio';
+         name3.appendChild(input);
+      }
+
+   </script>
+</body>
+</html> -->
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Form Builder</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        #formPreview {
+            background: #e9ecef;
+            padding: 15px;
+            min-height: 150px;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        /* .input-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        } */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Form Builder</h2>
+        <div class="buttons">
+            <button onclick="addTextField()">Add Text Field</button>
+            <button onclick="addCheckBox()">Add Checkbox</button>
+            <button onclick="addRadioButton()">Add Radio Button</button>
+        </div>
+        <div id="formPreview">
+            <p id="placeholder">No fields added yet</p>
+        </div>
+    </div>
+
+    <script>
+        function removePlaceholder() {
+            const placeholder = document.getElementById("placeholder");
+            if (placeholder) {
+                placeholder.remove();
+            }
+        }
+        
+        function addTextField() {
+            removePlaceholder();
+            const formPreview = document.getElementById("formPreview");
+            const div = document.createElement("div");
+            div.classList.add("input-group");
+            
+            const label = document.createElement("label");
+            label.innerText = "Text:";
+            
+            const input = document.createElement("input");
+            input.type = "text";
+            input.placeholder = "Enter text...";
+            
+            div.appendChild(label);
+            div.appendChild(input);
+            formPreview.appendChild(div);
+        }
+        
+        function addCheckBox() {
+            removePlaceholder();
+            const formPreview = document.getElementById("formPreview");
+            const div = document.createElement("div");
+            div.classList.add("input-group");
+            
+            const label = document.createElement("label");
+            label.innerText = "Check Me:";
+            
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            
+            div.appendChild(label);
+            div.appendChild(checkbox);
+            formPreview.appendChild(div);
+        }
+        
+        function addRadioButton() {
+            removePlaceholder();
+            const formPreview = document.getElementById("formPreview");
+            const div = document.createElement("div");
+            div.classList.add("input-group");
+            
+            const label = document.createElement("label");
+            label.innerText = "Select:";
+            
+            const radio = document.createElement("input");
+            radio.type = "radio";
+            
+            div.appendChild(label);
+            div.appendChild(radio);
+            formPreview.appendChild(div);
+        }
+    </script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            height: 100vh;
+            width: 100vw;
+            background-color: #edeaea;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #container{
+            min-height: 50vh;
+            width: 400px;
+            background-color: white;
+            border-radius: 0.6em;
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+            padding-left: 0.9em;
+        }
+
+        #div1{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #head1{
+            font-size: larger;
+            margin-top: 15px;
+        }
+
+        #div2{
+            display: flex;
+            flex-direction: row;
+            gap: 8px;
+        }
+
+        button{
+            background-color:  #007bff;
+            color: white;
+            border: none;
+            border-radius: 2px;
+            height: 2em;
+            width: 8.4em;
+            font-size: small;
+        }
+
+        button:hover{
+            background-color: blue;
+        }
+
+        #div3{
+            width: 95%;
+            min-height: 150px;
+            background-color:  #e9ecef;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        #button2{
+             width: 3em;
+             height: 2em;
+             font-size: xx-small;
+        }
+
+        label{
+            font-size: small;
+        }
+
+        #newDiv{
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="div1">
+            <h1 id="head1">Form Builder</h1>
+        </div>
+         <div id="div2">
+            <button onclick="AddTextfield()">Add Text Field</button>
+             <button onclick="AddCheckBox()">Add Checkbox</button>
+             <button onclick="AddRadioText()">Add Radio Button</button>
+         </div>
+
+         <div id="div3">
+               <p id="para1">nothing is there</p>
+         </div>
+    </div>
+
+    <script>
+        // addfunction ka call kare to add hona chaiye and bhut sari chize 
+        // aur ek aue chiz liek delete ka bhi ek option rakhio is me;
+        function removePlaceHolder(){
+            let placeholder = document.getElementById('para1');
+            if(placeholder){
+                placeholder.remove();
+            }
+        }
+
+        // abb yha se kuch chize ati hai k like ki mai agar addTextField add Checkbox abd add Radio Button p click karta hu to mughe 
+        // according to button hi chize milti hai;
+
+        function AddTextfield(){
+            removePlaceHolder();
+            const name = document.getElementById('div3'); // maine ye div3 pakad liya hai; and abb isk eandar hi chize push karni hai;
+
+            const newDiv = document.createElement('div');
+            newDiv.id = 'newDiv';
+
+            const label = document.createElement('label');
+            label.innerHTML = 'textField:';
+
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.placeholder = 'write something here';
+
+            // create buttons;
+
+            const button2 = document.createElement('button');
+            button2.id = 'button2';
+            button2.setAttribute('onclick', 'delete()');
+            button2.innerHTML = 'delete';
+
+            newDiv.appendChild(label);
+            newDiv.appendChild(input);
+            newDiv.appendChild(button2);
+            name.appendChild(newDiv);
+        }
+    </script>
+</body>
+</html>

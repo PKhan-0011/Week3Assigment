@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hard tasiky todo!</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        #div1{
+            height: 100vh;
+            width: 100vw;
+            background-color: rgb(182, 185, 185);
+            display: flex;
+            flex-direction: row;
+            gap: 1em;
+            padding-top: 10px;
+            padding-left: 10px;
+            /* flex-wrap: wrap; */
+        }
+        #head4{
+            font-size: small;
+            margin-left: 2em;
+        }
+        #button1{
+            height: 1.5em;
+            width: 3.5em;
+            font-size: xx-small;
+            background-color: #d81138;
+            border: none;
+            border-radius: 0.1rem;
+            color: white;
+        }
+
+        #div2{
+            height: 50%;
+            width: 30%;
+            /* min-width: 100px; */
+            background-color: aliceblue;
+            border-radius: 10px;
+            overflow-y: auto;
+            overflow-x: auto;
+        }
+        #alagDiv{
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            padding-top: 0.4em;
+            padding-right: 20px;
+        }
+        #div3,#div4{
+            height: 50%;
+            width: 30%;
+            /* min-width: 100px; */
+            background-color: aliceblue;
+            border-radius: 10px;
+            overflow-y: auto;
+            overflow-x: auto;
+        }
+
+        #head5{
+            font-size: small;
+            margin-left: 2.3em;
+            padding-top: 5px;
+        }
+        #btn1{
+            font-size: xx-small;
+            width: 4em;
+            height: 1.5em;
+            background-color:#3268f5;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        #buttonDiv{
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+        }
+
+        #btn2{
+            font-size: xx-small;
+            font: 10px;
+            width: 4em;
+            height: 1.5em;
+            background-color: #3268f5;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+       
+        #newDiv1{
+            display: flex;
+            flex-direction: row;
+            gap: 5px;
+            padding-left: 10px;
+            padding-top: 10px;
+            font-size: xx-small;
+        }
+
+        span {
+            font-weight: bold;
+            display: inline-block;
+            /* padding: 3px 6px; */
+            padding-bottom: 3px;
+            border: 1px solid #000;
+            height: 1.5em;
+            width: 4.5em;
+       }
+
+    </style>
+</head>
+<body>
+    <div id="div1">
+      <div id="div2">
+        <div id="alagDiv">
+            <h4 id="head4">Add Todo</h4>
+            <button id="button1" onclick="addFunction()">+</button>
+        </div>
+      </div>
+
+      <div id="div3">
+        <h4 id="head5"> Under Process</h4>
+      </div>
+
+      <div id="div4">
+           <h4 id="head5">Completed Todo</h4>
+      </div>
+    </div>
+    <script>
+          function addFunction(){
+            const title = prompt("enter todo's here!");
+           if(!title){
+             alert("Bhia yha pe kuch likho to");
+             return;
+           } 
+           else{
+            console.log(title);
+           }
+            
+         
+           const descritTitle = prompt("[hard/medium/easy]");
+            if(!descritTitle){
+                alert("You selected a wrogn priority!");
+                return;
+            }
+            
+            // yha pe ek extra div create kar le jisme hame title and desc ko add kara hoga!;
+            // yha se ek div me mughe title1 and prompt rakhna hai;
+            const newDiv = document.createElement('div');
+            newDiv.id  = 'newDiv1';
+             
+            // aur dusare div me mughe do buttons rakhne hai and then fir mughe indono div ko div2 me add/append kar denge;
+            newDiv.appendChild(document.createTextNode(title));
+            // newDiv.appendChild(descritTitle);
+            // div2.appendChild(newDiv);
+             
+            function getColourWala(descritTitle){
+                const priorityTag = document.createElement('span');
+                priorityTag.textContent = descritTitle;
+
+                let color = 'black'; // default color liya hua hai;
+
+                if(descritTitle.toLowerCase() == 'hard'){
+                    color = 'red';
+                }
+                else if(descritTitle.toLowerCase() == 'medium'){
+                    color = 'yellowgreen';
+                }
+                else if(descritTitle.toLowerCase() == 'easy'){
+                     color = 'green';
+                }
+                  priorityTag.style.color = color;
+                  
+                  return priorityTag;
+            }
+
+            if(['hard', 'medium', 'easy'].includes(descritTitle.toLowerCase())){
+                newDiv.appendChild(getColourWala(descritTitle));
+            }
+            
+            // yha se do button ke div bna and usko ek newDiv me add kar then wo apne app hi div2 me dal jayega;
+
+             const underP = "underP";
+             const Done = "Done";
+
+            const buttonDiv = document.createElement('div');
+            buttonDiv.id = 'buttonDiv';
+            buttonDiv.innerHTML = `<button id="btn1" onclick="moveTounderProcessBox(this)">${underP}</button>
+                                    <button id='btn2' onclick="moveToCompletedTodo(this)">${Done} </button>`
+
+            // abb isko mughe newDiv me append hai;
+            newDiv.appendChild(buttonDiv);
+            div2.appendChild(newDiv);
+
+          }
+            // mughe dekho yha pe div ka to pta hai ni this key word se newDiv excess karke mughe div3 and div4 me send karna hai;
+          function moveTounderProcessBox(button){
+             const newDiv = button.parentElement.parentElement;
+             div3.appendChild(newDiv);
+          }
+
+          function moveToCompletedTodo(button){
+             const newDiv = button.parentElement.parentElement;
+             div4.appendChild(newDiv);
+          }
+
+          // isme todhi si kahi p gdbd hai and iski styling todhi se sudhar liyo wha jake fir plan kario aage ka kya karna hai ajj ye kal ka tha ookkh;
+    </script>
+</body>
+</html>
